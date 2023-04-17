@@ -1,0 +1,5 @@
+.idea
+ksj.db
+*.pyc
+__pycache__
+migrations
