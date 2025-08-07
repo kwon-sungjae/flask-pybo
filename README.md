@@ -1,31 +1,103 @@
-# flask-pybo
-플라스크를 이용해 간단한 게시판을 만들어보았다.   
-HTML, css의 기본적인 구조와 웹 프레임워크를 빠르게 공부하는 것을 목적으로 플라스크를 써보았고   
-서버와 DB연동 등 서버와 웹 구현에 대한 내용을 공부할 수 있었다.
+# 📝 FlaskBoard: 간단한 Q&A 블로그 웹앱
 
-# 폴더와 파일 설명
-기본적인 플라스크 프로젝트 구조이다.   
-1. 데이터베이스를 처리하는 models.py 파일
-ORM을 지원하는 파잉썬 데이터베이스 도구인 SQLAlchemy를 사용
-모델 기반으로 데이터베이스를 처리
-프로젝트에는 "모델 클래스들을 정의할 models.py파일이 필요"
+FlaskBoard는 **Flask와 SQLAlchemy를 활용하여 구현한 블로그형 게시판 시스템**입니다.  
+질문과 답변 기능 중심의 커뮤니티 형태로, **사용자 인증**, **CRUD 기능**, **템플릿 분리**, **ORM 적용** 등  
+웹 개발의 핵심 요소들을 실제로 구현해보며 학습한 프로젝트입니다.
 
-2. 서버로 전송된 폼을 처리하는 forms.py 파일
-웹 브라우저에서 서버로 전송된 폼을 처리할 때 WTForms라는 라이브러리를 사용
-WTForms 역시 모델 기반으로 폼을 처리
-따라서 폼 클래스를 정의할 froms.py 파일이 필요
+> 본 프로젝트는 예제를 기반으로 기능을 학습하고 스스로 구조화하여 직접 구현하였습니다.
 
-3. 화면을 구성하는 views 디렉터리
-views디렉터리에는 hello_pybo같은 함수들로 구성된 뷰 파일들을 저장함
-main.views, question.views, answer.views 등의 뷰 파일을 만들 것
+---
 
-4. CSS, 자바스크립트, 이미지 파일을 저장하는 static 디렉터리
-말 그대로 .css, .jh, .jph, .png등을 저장
+## 📌 주요 기능
 
-5. HTML 파일을 저장하는 templates 디렉터리
-질문 목록, 질문 상세 등의 HTML파일을 저장
-question_list.html, question_detail.hhtml과 같은 탬플릿 파일을 만들어 사용
+- 회원가입 / 로그인 / 로그아웃
+- 질문 등록, 조회수 증가, 수정, 삭제
+- 답변 등록, 수정, 삭제
+- 로그인한 사용자만 글 작성 가능
+- 게시글 목록 및 상세 페이지
+- 사용자 정의 템플릿 필터 (`datetime`)
+- SQLAlchemy ORM 및 Flask-Migrate로 DB 관리
 
-6. 파이보 프로젝트를 설정하는 config.py 파일
-프로젝트 환경을 설정한다.
-환경변수, 데이터베이스 등의 설정을 이 파일에 저장
+---
+
+## 📁 프로젝트 구조
+
+```
+ksj/
+│  __init__.py          # 앱 팩토리 패턴 적용, ORM 및 블루프린트 설정
+│  models.py            # 질문, 답변, 사용자 모델 정의
+│  forms.py             # 질문/답변/사용자 관련 폼 정의
+│  filter.py            # 사용자 정의 필터 함수 (datetime 포맷)
+│
+├─static/               # 정적 파일 (CSS, JS)
+│
+├─templates/            # 템플릿 파일 (Jinja2)
+│  ├─question/          # 질문 관련 페이지
+│  ├─answer/            # 답변 관련 페이지
+│  └─auth/              # 로그인/회원가입 페이지
+│
+└─views/                # 블루프린트 기반 뷰 함수 분리
+   ├─main_views.py
+   ├─question_views.py
+   ├─answer_views.py
+   └─auth_views.py
+```
+
+---
+
+## ⚙️ 실행 방법
+
+1. 가상환경 생성 및 패키지 설치
+```bash
+python -m venv venv
+source venv/bin/activate  # (윈도우: venv\Scripts\activate)
+pip install flask flask_sqlalchemy flask_wtf flask_migrate flask_login
+```
+
+2. 환경설정 파일 `config.py` 확인
+
+3. 데이터베이스 초기화
+```bash
+flask db init
+flask db migrate
+flask db upgrade
+```
+
+4. 앱 실행
+```bash
+export FLASK_APP=ksj      # 윈도우: set FLASK_APP=ksj
+flask run
+```
+
+---
+
+## 🙋🏻‍♂️ 프로젝트 제작자: 권성재
+
+> Flask 기본기부터 ORM, 블루프린트, 사용자 인증, 필터링 등 실무 기반의 구조를 경험하며 웹앱 전체 구조를 직접 구성했습니다.
+
+- 📌 **모든 기능 직접 구현**
+- 📚 예제를 학습한 뒤, 구조를 완전히 재작성하며 실무 감각을 익힘
+- 🔐 백엔드 인증부터 프론트 템플릿 구성까지 일괄 구현
+
+---
+
+## 🛠 사용 기술
+
+| 범주 | 기술 |
+|------|------|
+| Language | Python 3.x |
+| Web Framework | Flask |
+| ORM | SQLAlchemy |
+| DB Migration | Flask-Migrate |
+| Form Handling | Flask-WTF |
+| Frontend | Bootstrap, HTML5, Jinja2 |
+| Auth | 사용자 인증 (Flask-Login 또는 커스텀 구현) |
+
+---
+
+## 📫 Contact
+
+- 📫 연락: [chris123ag@naver.com] [010-9491-0965]
+- 🔗 GitHub: [https://github.com/kwon-sungjae]
+
+> "웹개발의 본질은 구조화와 사용자 경험이다. 이를 배우기 위한 첫걸음이 이 프로젝트였다."
