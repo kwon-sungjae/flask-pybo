@@ -1,1 +1,1 @@
-web: gunicorn ksj:create_app
+web: gunicorn "ksj:create_app()"
