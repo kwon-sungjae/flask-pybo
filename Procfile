@@ -1,0 +1,1 @@
+web: gunicorn ksj:create_app
