@@ -41,6 +41,10 @@ ksj/
    ├─question_views.py
    ├─answer_views.py
    └─auth_views.py
+config.py
+manage.py (실행 파일)
+README.md 
+req.txt (라이브러리 배포용)
 ```
 
 ---
@@ -65,8 +69,9 @@ flask db upgrade
 
 4. 앱 실행
 ```bash
-export FLASK_APP=ksj      # 윈도우: set FLASK_APP=ksj
-flask run
+set FLASK_APP=ksj:create_app (윈도우)
+set FLASK_ENV=development (윈도우)
+python manage.py
 ```
 
 ---
