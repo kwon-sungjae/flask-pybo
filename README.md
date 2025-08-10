@@ -98,6 +98,8 @@ gunicorn "manage:create_app()" (Start Command)
 3. 배포 완료 후 URL 확인
 - https://flask-pybo.onrender.com (예시)
 
+---
+
 ## 🙋🏻‍♂️ 프로젝트 제작자: 권성재
 
 > Flask 기본기부터 ORM, 블루프린트, 사용자 인증, 필터링 등 실무 기반의 구조를 경험하며 웹앱 전체 구조를 직접 구성했습니다.
