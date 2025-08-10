@@ -1,5 +1,7 @@
 # 📝 FlaskBoard: 간단한 Q&A 블로그 웹앱
 
+> 📍 **[👉 배포된 웹사이트 보러가기](https://flask-pybo.onrender.com)**
+
 FlaskBoard는 **Flask와 SQLAlchemy를 활용하여 구현한 블로그형 게시판 시스템**입니다.  
 질문과 답변 기능 중심의 커뮤니티 형태로, **사용자 인증**, **CRUD 기능**, **템플릿 분리**, **ORM 적용** 등  
 웹 개발의 핵심 요소들을 실제로 구현해보며 학습한 프로젝트입니다.
@@ -41,10 +43,15 @@ ksj/
    ├─question_views.py
    ├─answer_views.py
    └─auth_views.py
+migrations/ # Flask-Migrate로 생성된 마이그레이션 파일
+venv/ # 가상환경
+.gitignore
 config.py
-manage.py (실행 파일)
-README.md 
-req.txt (라이브러리 배포용)
+ksj.db # SQLite 데이터베이스
+manage.py # 앱 실행 파일
+Procfile # Render 배포 설정 파일
+README.md
+requirements.txt # 라이브러리 목록
 ```
 
 ---
@@ -55,7 +62,7 @@ req.txt (라이브러리 배포용)
 ```bash
 python -m venv venv
 source venv/bin/activate  # (윈도우: venv\Scripts\activate)
-pip install flask flask_sqlalchemy flask_wtf flask_migrate flask_login
+pip install -r requirementes.txt
 ```
 
 2. 환경설정 파일 `config.py` 확인
@@ -75,6 +82,21 @@ python manage.py
 ```
 
 ---
+
+## Render를 통한 배포
+
+1. GitHub 저장소 준비
+- 패키지 목록 정리
+- Render에서 마이그레이션 없이 동작할 수 있도록 SQLite DB(ksj.db)를 commit/Push (선택)
+
+2. Render 서비스 생성
+```bash
+pip install -r requirements.txt (Build Command)
+gunicorn "manage:create_app()" (Start Command)
+```
+
+3. 배포 완료 후 URL 확인
+- https://flask-pybo.onrender.com (예시)
 
 ## 🙋🏻‍♂️ 프로젝트 제작자: 권성재
 
@@ -102,7 +124,8 @@ python manage.py
 
 ## 📫 Contact
 
-- 📫 연락: [chris123ag@naver.com] [010-9491-0965]
+- 📫 이메일: [chris123ag@naver.com] 
+- 📱  연락처: 010-9491-0965
 - 🔗 GitHub: [https://github.com/kwon-sungjae]
 
 > "웹개발의 본질은 구조화와 사용자 경험이다. 이를 배우기 위한 첫걸음이 이 프로젝트였다."
