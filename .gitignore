@@ -1,5 +1,5 @@
 .idea
-ksj.db
+# ksj.db
 *.pyc
 __pycache__
-migrations
+# migrations
